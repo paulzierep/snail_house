@@ -1,0 +1,58 @@
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+{% load staticfiles %}
+
+
+{% block bootstrap3_content %}
+
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+<body>
+
+<!-- <li class="<%= 'active' if current_page?(about_path) %>"><%= link_to "About Us", about_path %></li>
+<li class="<%= 'active' if current_page?(mission_path) %>"><%= link_to "Our Mission", mission_path %></li>
+ -->
+    {# Navigation Menu #}
+    <header>
+    <nav class="navbar navbar-custom navbar-inverse navbar-static-top">
+      <div class="container">
+<!--         <div class="navbar-header">
+
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">A</span>
+            <span class="icon-bar">B</span>
+            <span class="icon-bar">C</span>
+            <span class="icon-bar">D</span>
+          </button>
+        </div> -->
+
+          <a class="navbar-brand" href="home">Zu Hause</a>
+
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            {% block nav_act %}
+            <li><a href="schnecken">Schnecken</a></li>
+            <li><a href="dachwurzen">Dachwurzen</a></li>
+            <li><a href="maerkte">Märkte</a></li>
+            {% endblock %}
+            <!--  <button class="btn btn-danger navbar-btn">Button</button> -->
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    </header>
+    
+  {% block content %}{% endblock %}
+
+</body>
+
+{% autoescape off %}{% bootstrap_messages %}{% endautoescape %}
+{% endblock %}
